@@ -1,53 +1,84 @@
-# Giải pháp chăm sóc khách hàng bằng LLM cho các doanh nghiệp dịch vụ nhỏ
 
-Sử dụng kiến trúc RAG và multi-agent để xây dựng một nền tảng nhắn tin chăm sóc khách hàng hỗ trợ các nghiệp vụ như hỏi đáp, lên đơn, khiếu nại.
+# 💡 Giải pháp chăm sóc khách hàng bằng LLM cho doanh nghiệp dịch vụ nhỏ
 
-Đảm bảo:
-- Dịch vụ nhắn tin chuyên biệt cho CSKH
-- Agent sinh phản hồi tương ứng các nghiệp vụ “hỏi đáp”, “lên đơn”​
-- Agent chuyển tiếp các yêu cầu vượt quá khả năng và “khiếu nại”​
-- Tự động trích xuất thông tin​ khách hàng
-- Tự động lên đơn khi nhận thấy nhu cầu của khách​
+> **Nền tảng nhắn tin CSKH sử dụng kiến trúc RAG & Multi-Agent**
 
-Giao diện:
-Màn nhắn tin của khách hàng
+---
+
+## 🚀 Tính năng nổi bật
+
+- **Dịch vụ nhắn tin chuyên biệt cho CSKH**
+- **Agent phản hồi nghiệp vụ:** hỏi đáp, lên đơn
+- **Agent chuyển tiếp:** các yêu cầu vượt quá khả năng & khiếu nại
+- **Tự động trích xuất thông tin khách hàng**
+- **Tự động lên đơn khi phát hiện nhu cầu**
+
+---
+
+## 🖥️ Giao diện hệ thống
+
+### Khách hàng
 ![Màn nhắn tin 1](public/demo/khungchatkhach.png)
 ![Màn nhắn tin 2](public/demo/nhantinkhach.png)
 
-Màn nhắn tin của nhân viên
+### Nhân viên
 ![Màn nhắn tin nhân viên 1](public/demo/khungchatnhanvien.png)
-Hai chế độ vận hành “Auto” và “Manual”​
-- “Auto”: Agent tương tác trực tiếp với khách hàng​
-- “Manual”: Agent hoạt động như hệ trợ giúp quyết định 
+
+**Chế độ vận hành:**
+
+| Chế độ   | Mô tả |
+|----------|-------|
+| **Auto** | Agent tương tác trực tiếp với khách hàng |
+| **Manual** | Agent hỗ trợ quyết định cho nhân viên |
+
 ![Màn nhắn tin nhân viên 2](public/demo/khungchatnhanvien2.png)
 ![Màn nhắn tin nhân viên 3](public/demo/khungchatnhanvien3.png)
-Các tin nhắn chatbot không trả lời được(RAG không cho ra kết quả) được lưu vào hội thoại để nhân viên xử lý
+
+> 💬 **Tin nhắn không trả lời được (RAG không ra kết quả) sẽ lưu lại để nhân viên xử lý.**
+
 ![Màn nhắn tin nhân viên 4](public/demo/khungchatnhanvien4.png)
-Hiện thông tin khách hàng trích xuất được trong khung chat
+
+**Thông tin khách hàng trích xuất hiển thị trong khung chat:**
 ![Màn quản lý](public/demo/manquanly.png)
 
-## Mục lục
 
-- [Phân tích thiết kế](#phan-tich-thiet-ke)
-- [Xây dựng sản phẩm](#xay-dung-san-pham)
+---
 
+## 📑 Mục lục
 
+- [1. Phân tích thiết kế](#1-phan-tich-thiet-ke)
+- [2. Xây dựng sản phẩm](#2-xay-dung-san-pham)
 
-## [Phân tích thiết kế](#phan-tich-thiet-ke)
-### Usecase tổng quan
+---
+
+## 1. 🧩 Phân tích thiết kế
+
+### Tổng quan Usecase
 ![Usecase tổng quan](public/usecase/TongQuan.png)
-Ba tác nhân chính tham gia hệ thống gồm nhân viên, quản lý doanh nghiệp và khách hàng
+
+**Ba tác nhân chính:**
+
+- Nhân viên
+- Quản lý doanh nghiệp
+- Khách hàng
 
 ### Usecase nhắn tin
 ![Usecase nhắn tin](public/usecase/QLHT.png)
-Cơ chế chọn và bỏ chọn đảm bảo tại một thời điểm một khách chỉ nhắn tin với một nhân viên.
-Agent cung cấp phản hồi dựa trên chế độ hội thoại.
+
+**Logic:**
+- Đảm bảo tại một thời điểm, một khách chỉ nhắn với một nhân viên
+- Agent phản hồi dựa trên chế độ hội thoại
 
 ### Usecase quản lý đơn
 ![Usecase quản lý đơn](public/usecase/QLDH.png)
-Agent trích xuất thông tin từ hội thoại, nhận biết ý định lên đơn và tạo đơn.​
 
-## [Xây dựng sản phẩm](#xay-dung-san-pham)
+**Logic:**
+- Agent trích xuất thông tin từ hội thoại
+- Nhận biết ý định lên đơn và tạo đơn
+
+---
+
+## 2. 🏗️ Xây dựng sản phẩm
 
 ### Cấu trúc thư mục
 ![folder](public/etc/folderStructure.png)
@@ -55,46 +86,64 @@ Agent trích xuất thông tin từ hội thoại, nhận biết ý định lên
 ### Tổng quan dự án
 ![Tổng quan](public/container/overview.png)
 
-Cấu trúc backend server
+### Cấu trúc backend server
 ![backend](public/container/backend.png)
 
-#### Chat Server:
+#### Chat Server
 ![chatserver](public/etc/chatserver.png)
 
-Tổ chức dữ liệu trong redis
-redisStructure
+---
+
+### 🗄️ Tổ chức dữ liệu
+
+#### Redis
+**Cấu trúc:**
 ![redisStructure](public/etc/redisStructure.png)
 
-chi tiết schema
+**Chi tiết schema:**
 ![redisschema](public/etc/redisschema.png)
-message_queue chứa tin nhắn của những khách hàng chưa được nhận
 
-Tổ chức dữ liệu trong mongodb
+> **message_queue**: chứa tin nhắn của khách hàng chưa được nhận
+
+#### MongoDB
+**Cấu trúc:**
 ![mongoschema](public/etc/mogoschema.png)
 
-#### Workflow sinh phản hồi
-Kiến trúc langGraph
-![langGraph](public/etc/langGraph.png)
-Trong đó node reAct agent là phối hợp của 2 agent và 1 RAG pipeline.
-node decompose hoạt động như sau
-![decompose](public/etc/decompose.png)
-nhận vào một truy vấn đa ý định và trả về các mảng ý định ví dụ như: "tôi muốn A, tôi muốn B" -> ["muốn A", "muốn B"]
+---
 
-Kiến trúc ReAct agent
+### 🔄 Workflow sinh phản hồi
+
+#### Kiến trúc langGraph
+![langGraph](public/etc/langGraph.png)
+
+**Node reAct agent:** phối hợp 2 agent & 1 RAG pipeline
+
+**Node decompose:**
+![decompose](public/etc/decompose.png)
+> Nhận truy vấn đa ý định, trả về mảng ý định. VD: "tôi muốn A, tôi muốn B" → `["muốn A", "muốn B"]`
+
+#### Kiến trúc ReAct agent
 ![agent](public/etc/agent.png)
-Agent Conversation
+
+#### Agent Conversation
 ![Conversationagent](public/etc/conversationAgent.png)
 
-Agent Reservation
+#### Agent Reservation
 ![ReservationAgent](public/etc/reservationAgent.png)
 
-RAG pipeline
+#### RAG pipeline
 ![pipeline](public/etc/ragpipeline.png)
-Thực hiện search 2 lần. Lần 1 dùng hệ số alpha 0.7(gần tìm kiếm vector) để tìm kiếm rộng, lần 2 dùng hệ số alpha 0.3(gần tìm kiếm text)
+
+**Logic tìm kiếm:**
+1. Lần 1: hệ số alpha 0.7 (gần tìm kiếm vector) → tìm kiếm rộng
+2. Lần 2: hệ số alpha 0.3 (gần tìm kiếm text)
+
 ![retrieval](public/etc/retrieval.png)
 
-#### Hệ quản trị nội dung
-Các chức năng của hệ quản trị nội bộ
+---
+
+### 🗃️ Hệ quản trị nội dung
+**Các chức năng của hệ quản trị nội bộ:**
 ![internal](public/etc/internal.png)
 
 
