@@ -98,9 +98,11 @@
 
 #### Redis
 **Cấu trúc:**
+
 ![redisStructure](public/etc/redisStructure.png)
 
 **Chi tiết schema:**
+
 ![redisschema](public/etc/redisschema.png)
 
 > **message_queue**: chứa tin nhắn của khách hàng chưa được nhận
