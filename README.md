@@ -148,5 +148,81 @@
 **Các chức năng của hệ quản trị nội bộ:**
 ![internal](public/etc/internal.png)
 
+---
+
+# 📦 Hướng dẫn cài đặt & Giới thiệu dự án
+
+## 1️⃣ Giới thiệu
+
+**Các dịch vụ chính:**
+
+- **Internal_service:** Quản trị nội bộ, CRUD dữ liệu doanh nghiệp
+- **LLM_service:** Sinh phản hồi
+- **Action_service:** Xử lý nghiệp vụ
+- **Websocket_service:** Duy trì hội thoại thời gian thực
+- **Kafka_service:** Chứa docker compose của Kafka
+
+---
+
+## 2️⃣ Hướng dẫn setup môi trường
+
+Đồ án được xây dựng hoàn toàn bằng **JavaScript** với runtime là **Node.js** nên việc cài đặt Node.js và npm là bắt buộc để chạy.
+
+**Thứ tự setup:**
+Kafka_service → Internal_service → RAG_service → LLM_service → Websocket_service → frontend
+
+### Kafka_service
+1. Cài Docker nếu chưa có
+2. Chạy: `docker compose -f kafka.yml start`
+
+### Internal_service
+1. `npm install`
+2. Đọc file `env.example` và tạo file `.env` tương ứng:
+    - Tạo 1 cluster MongoDB miễn phí trên https://cloud.mongodb.com/
+    - Tạo DB tên **CSKH** với các collection: `campaigns`, `clients`, `conversations`, `orders`, `tenants`
+    - Import dữ liệu tương ứng các collection ở thư mục `data`
+3. Setup FireBase:
+    - Truy cập https://console.firebase.google.com
+    - Tạo project mới
+    - Bật Firebase Authentication (Build > Authentication > Sign-in method > bật Google)
+    - Vào Project Settings > Service accounts > Generate new private key
+    - Lưu file JSON với tên `FirebaseKey.json` vào cùng mức với file `.env` của Internal_service
+
+### Action_service
+1. `npm install`
+2. Đọc file `env.example` và tạo file `.env` tương ứng:
+    - **GEMINI:** Lấy GEMINI_API_KEY tại https://aistudio.google.com/app/apikey
+    - **WEAVIATE:** Đăng ký https://console.weaviate.cloud, tạo cluster, lấy WEAVIATE_URL, WEAVIATE_API_KEY, tạo collection DocumentCollection, bật multi-tenant
+    - **MONGO:** MONGO_URI lấy ở bước trước
+    - **REDIS:** Đăng ký https://redis.io/try-free/, tạo instance, lấy REDIS_USERNAME, REDIS_PORT, REDIS_HOST, REDIS_PASSWORD
+    - **CLOUDINARY:** Đăng ký https://cloudinary.com, lấy CLOUDINARY_CLOUD, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET
+
+### LLM_service
+1. `npm install`
+2. Đọc file `env.example` và tạo file `.env` tương ứng:
+    - GEMINI_API_KEY, REDIS_USERNAME, REDIS_PASSWORD, REDIS_HOST, REDIS_PORT, MONGO_URI đã lấy ở các bước trước
+
+### Websocket_service
+1. `npm install`
+2. Đọc file `env.example` và tạo file `.env` tương ứng:
+    - GEMINI_API_KEY, REDIS_USERNAME, REDIS_PASSWORD, REDIS_HOST, REDIS_PORT, MONGO_URI đã lấy ở các bước trước
+
+### frontend
+1. `npm install`
+
+---
+
+## 3️⃣ Chạy các dịch vụ
+
+**Thứ tự:** Internal_service → RAG_service → LLM_service → Websocket_service → frontend
+
+```sh
+cd Internal_service && node index.js
+cd Action_service && node index.js
+cd LLM_service && node index.js
+cd Websocket_service && node index.js
+cd frontend && npm run start
+```
+
 
 
