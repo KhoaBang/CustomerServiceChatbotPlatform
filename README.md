@@ -7,9 +7,9 @@
 
 ## 📑 Mục lục
 
-- [1. Phân tích thiết kế](#1--phân-tích-thiết-kế)
-- [2. Xây dựng sản phẩm](2--xây-dựng-sản-phẩm)
-
+- [1. Phân tích thiết kế](#1-phân-tích-thiết-kế)
+- [2. Xây dựng sản phẩm](#2-xây-dựng-sản-phẩm)
+- [3. Hướng dẫn cài đặt](#3-hướng-dẫn-cài-đặt)
 ---
 
 ## 🚀 Tính năng nổi bật
@@ -151,9 +151,9 @@
 
 ---
 
-# 📦 Hướng dẫn cài đặt & Giới thiệu dự án
+## 3.Hướng dẫn cài đặt
 
-## 1️⃣ Giới thiệu
+### 1️⃣ Giới thiệu
 
 **Các dịch vụ chính:**
 
@@ -165,18 +165,18 @@
 
 ---
 
-## 2️⃣ Hướng dẫn setup môi trường
+### 2️⃣ Hướng dẫn setup môi trường
 
 Đồ án được xây dựng hoàn toàn bằng **JavaScript** với runtime là **Node.js** nên việc cài đặt Node.js và npm là bắt buộc để chạy.
 
 **Thứ tự setup:**
 Kafka_service → Internal_service → RAG_service → LLM_service → Websocket_service → frontend
 
-### Kafka_service
+#### kafka
 1. Cài Docker nếu chưa có
 2. Chạy: `docker compose -f kafka.yml start`
 
-### Internal_service
+#### Internal_service
 1. `npm install`
 2. Đọc file `env.example` và tạo file `.env` tương ứng:
     - Tạo 1 cluster MongoDB miễn phí trên https://cloud.mongodb.com/
@@ -189,7 +189,7 @@ Kafka_service → Internal_service → RAG_service → LLM_service → Websocket
     - Vào Project Settings > Service accounts > Generate new private key
     - Lưu file JSON với tên `FirebaseKey.json` vào cùng mức với file `.env` của Internal_service
 
-### Action_service
+#### Action_service
 1. `npm install`
 2. Đọc file `env.example` và tạo file `.env` tương ứng:
     - **GEMINI:** Lấy GEMINI_API_KEY tại https://aistudio.google.com/app/apikey
@@ -198,22 +198,22 @@ Kafka_service → Internal_service → RAG_service → LLM_service → Websocket
     - **REDIS:** Đăng ký https://redis.io/try-free/, tạo instance, lấy REDIS_USERNAME, REDIS_PORT, REDIS_HOST, REDIS_PASSWORD
     - **CLOUDINARY:** Đăng ký https://cloudinary.com, lấy CLOUDINARY_CLOUD, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET
 
-### LLM_service
+#### LLM_service
 1. `npm install`
 2. Đọc file `env.example` và tạo file `.env` tương ứng:
     - GEMINI_API_KEY, REDIS_USERNAME, REDIS_PASSWORD, REDIS_HOST, REDIS_PORT, MONGO_URI đã lấy ở các bước trước
 
-### Websocket_service
+#### Websocket_service
 1. `npm install`
 2. Đọc file `env.example` và tạo file `.env` tương ứng:
     - GEMINI_API_KEY, REDIS_USERNAME, REDIS_PASSWORD, REDIS_HOST, REDIS_PORT, MONGO_URI đã lấy ở các bước trước
 
-### frontend
+#### frontend
 1. `npm install`
 
 ---
 
-## 3️⃣ Chạy các dịch vụ
+### 3️⃣ Chạy các dịch vụ
 
 **Thứ tự:** Internal_service → RAG_service → LLM_service → Websocket_service → frontend
 
