@@ -151,7 +151,7 @@
 
 ---
 
-## 3.Hướng dẫn cài đặt
+## 3. Hướng dẫn cài đặt
 
 ### 1️⃣ Giới thiệu
 
