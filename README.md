@@ -5,6 +5,13 @@
 
 ---
 
+## 📑 Mục lục
+
+- [1. Phân tích thiết kế](#1--phân-tích-thiết-kế)
+- [2. Xây dựng sản phẩm](2--xây-dựng-sản-phẩm)
+
+---
+
 ## 🚀 Tính năng nổi bật
 
 - **Dịch vụ nhắn tin chuyên biệt cho CSKH**
@@ -44,14 +51,8 @@
 
 ---
 
-## 📑 Mục lục
 
-- [1. Phân tích thiết kế](#1-phan-tich-thiet-ke)
-- [2. Xây dựng sản phẩm](#2-xay-dung-san-pham)
-
----
-
-## 1. 🧩 Phân tích thiết kế
+## 1. Phân tích thiết kế
 
 ### Tổng quan Usecase
 ![Usecase tổng quan](public/usecase/TongQuan.png)
@@ -78,7 +79,7 @@
 
 ---
 
-## 2. 🏗️ Xây dựng sản phẩm
+## 2. Xây dựng sản phẩm
 
 ### Cấu trúc thư mục
 ![folder](public/etc/folderStructure.png)
